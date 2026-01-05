@@ -37,6 +37,7 @@ output "storage_account_primary_connection_string" {
 
 output "schedulers" {
   description = "Information about the created scheduler function apps"
+  sensitive   = true
   value = {
     for k, v in module.scheduler : k => {
       function_app_id         = v.function_app_id
