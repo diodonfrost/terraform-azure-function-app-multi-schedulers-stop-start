@@ -40,12 +40,14 @@ output "schedulers" {
   sensitive   = true
   value = {
     for k, v in module.scheduler : k => {
-      function_app_id          = v.function_app_id
-      function_app_name        = v.function_app_name
-      function_app_master_key  = v.function_app_master_key
-      default_hostname         = v.default_hostname
-      app_settings             = v.app_settings
-      diagnostic_settings_name = v.diagnostic_settings_name
+      function_app_id           = v.function_app_id
+      function_app_name         = v.function_app_name
+      function_app_master_key   = v.function_app_master_key
+      default_hostname          = v.default_hostname
+      app_settings              = v.app_settings
+      diagnostic_settings_name  = v.diagnostic_settings_name
+      application_insights_name = v.application_insights_name
+      application_insights_id   = v.application_insights_id
     }
   }
 }

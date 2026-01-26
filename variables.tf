@@ -50,6 +50,10 @@ variable "schedulers" {
       log_categories                 = optional(list(string), ["FunctionAppLogs"])
       enable_metrics                 = optional(bool, false)
     }), null)
+    application_insights = optional(object({
+      enabled                    = optional(bool, false)
+      log_analytics_workspace_id = optional(string, null)
+    }), {})
   }))
 }
 

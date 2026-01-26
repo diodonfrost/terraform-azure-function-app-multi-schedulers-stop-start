@@ -52,5 +52,10 @@ module "scheduler" {
     enable_metrics                 = each.value.diagnostic_settings["enable_metrics"]
   } : null
 
+  application_insights = {
+    enabled                    = each.value.application_insights["enabled"]
+    log_analytics_workspace_id = each.value.application_insights["log_analytics_workspace_id"]
+  }
+
   tags = var.tags
 }
