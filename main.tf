@@ -16,7 +16,7 @@ resource "azurerm_service_plan" "this" {
 module "scheduler" {
   for_each = var.schedulers
   source   = "diodonfrost/function-app-scheduler-stop-start/azure"
-  version  = "v2.0.0"
+  version  = "v3.0.0"
 
   resource_group_name           = var.resource_group_name
   location                      = var.location
@@ -41,6 +41,10 @@ module "scheduler" {
     resource_group_name = var.resource_group_name
   }
 
+  application_insights = {
+    connection_string   = each.value.application_insights["connection_string"]
+    instrumentation_key = each.value.application_insights["instrumentation_key"]
+  }
   diagnostic_settings = each.value.diagnostic_settings != null ? {
     name                           = each.value.diagnostic_settings["name"]
     storage_account_id             = each.value.diagnostic_settings["storage_account_id"]
@@ -51,11 +55,6 @@ module "scheduler" {
     log_categories                 = each.value.diagnostic_settings["log_categories"]
     enable_metrics                 = each.value.diagnostic_settings["enable_metrics"]
   } : null
-
-  application_insights = {
-    enabled                    = each.value.application_insights["enabled"]
-    log_analytics_workspace_id = each.value.application_insights["log_analytics_workspace_id"]
-  }
 
   tags = var.tags
 }

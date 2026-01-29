@@ -40,6 +40,10 @@ variable "schedulers" {
     aks_schedule                  = optional(bool, false)
     container_group_schedule      = optional(bool, false)
     scale_set_schedule            = optional(bool, false)
+    application_insights = optional(object({
+      connection_string   = optional(string, null)
+      instrumentation_key = optional(string, null)
+    }), null)
     diagnostic_settings = optional(object({
       name                           = string
       storage_account_id             = optional(string, null)
@@ -50,10 +54,6 @@ variable "schedulers" {
       log_categories                 = optional(list(string), ["FunctionAppLogs"])
       enable_metrics                 = optional(bool, false)
     }), null)
-    application_insights = optional(object({
-      enabled                    = optional(bool, false)
-      log_analytics_workspace_id = optional(string, null)
-    }), {})
   }))
 }
 
