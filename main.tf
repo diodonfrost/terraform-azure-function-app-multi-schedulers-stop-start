@@ -41,20 +41,8 @@ module "scheduler" {
     resource_group_name = var.resource_group_name
   }
 
-  application_insights = {
-    connection_string   = each.value.application_insights["connection_string"]
-    instrumentation_key = each.value.application_insights["instrumentation_key"]
-  }
-  diagnostic_settings = each.value.diagnostic_settings != null ? {
-    name                           = each.value.diagnostic_settings["name"]
-    storage_account_id             = each.value.diagnostic_settings["storage_account_id"]
-    log_analytics_id               = each.value.diagnostic_settings["log_analytics_id"]
-    log_analytics_destination_type = each.value.diagnostic_settings["log_analytics_destination_type"]
-    eventhub_name                  = each.value.diagnostic_settings["eventhub_name"]
-    eventhub_authorization_rule_id = each.value.diagnostic_settings["eventhub_authorization_rule_id"]
-    log_categories                 = each.value.diagnostic_settings["log_categories"]
-    enable_metrics                 = each.value.diagnostic_settings["enable_metrics"]
-  } : null
+  application_insights = var.application_insights
+  diagnostic_settings  = var.diagnostic_settings
 
   tags = var.tags
 }

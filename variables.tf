@@ -40,21 +40,31 @@ variable "schedulers" {
     aks_schedule                  = optional(bool, false)
     container_group_schedule      = optional(bool, false)
     scale_set_schedule            = optional(bool, false)
-    application_insights = optional(object({
-      connection_string   = optional(string, null)
-      instrumentation_key = optional(string, null)
-    }), null)
-    diagnostic_settings = optional(object({
-      name                           = string
-      storage_account_id             = optional(string, null)
-      log_analytics_id               = optional(string, null)
-      log_analytics_destination_type = optional(string, null)
-      eventhub_name                  = optional(string, null)
-      eventhub_authorization_rule_id = optional(string, null)
-      log_categories                 = optional(list(string), ["FunctionAppLogs"])
-      enable_metrics                 = optional(bool, false)
-    }), null)
   }))
+}
+
+variable "application_insights" {
+  description = "Application Insights configuration for all schedulers"
+  type = object({
+    connection_string   = string
+    instrumentation_key = string
+  })
+  default = null
+}
+
+variable "diagnostic_settings" {
+  description = "Diagnostic settings configuration for all schedulers"
+  type = object({
+    name                           = string
+    storage_account_id             = optional(string, null)
+    log_analytics_id               = optional(string, null)
+    log_analytics_destination_type = optional(string, null)
+    eventhub_name                  = optional(string, null)
+    eventhub_authorization_rule_id = optional(string, null)
+    log_categories                 = optional(list(string), ["FunctionAppLogs"])
+    enable_metrics                 = optional(bool, false)
+  })
+  default = null
 }
 
 variable "tags" {
