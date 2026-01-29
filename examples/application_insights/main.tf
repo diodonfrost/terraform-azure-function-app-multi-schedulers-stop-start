@@ -28,6 +28,11 @@ module "multi_scheduler" {
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
 
+  application_insights = {
+    connection_string   = azurerm_application_insights.test.connection_string
+    instrumentation_key = azurerm_application_insights.test.instrumentation_key
+  }
+
   schedulers = {
     azure-resources-stop = {
       function_app_name             = "stop-vms-at-night-${random_pet.suffix.id}"
@@ -39,10 +44,6 @@ module "multi_scheduler" {
       mysql_schedule                = "true"
       aks_schedule                  = "true"
       container_group_schedule      = "true"
-      application_insights = {
-        connection_string   = azurerm_application_insights.test.connection_string
-        instrumentation_key = azurerm_application_insights.test.instrumentation_key
-      }
       scheduler_tag = {
         "tostop" : "true",
       }
@@ -57,10 +58,6 @@ module "multi_scheduler" {
       mysql_schedule                = "true"
       aks_schedule                  = "true"
       container_group_schedule      = "true"
-      application_insights = {
-        connection_string   = azurerm_application_insights.test.connection_string
-        instrumentation_key = azurerm_application_insights.test.instrumentation_key
-      }
       scheduler_tag = {
         "tostop" : "true",
       }
