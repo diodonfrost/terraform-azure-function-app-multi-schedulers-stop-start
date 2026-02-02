@@ -68,16 +68,19 @@ module "multi_scheduler" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_scheduler"></a> [scheduler](#module\_scheduler) | diodonfrost/function-app-scheduler-stop-start/azure | v3.0.0 |
+| <a name="module_scheduler"></a> [scheduler](#module\_scheduler) | diodonfrost/function-app-scheduler-stop-start/azure | v3.1.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_definition.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition) | resource |
 | [azurerm_service_plan.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_plan) | resource |
 | [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) | resource |
 | [random_id.service_plan_suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [random_id.storage_suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 
 ## Inputs
 
@@ -91,6 +94,7 @@ module "multi_scheduler" {
 | <a name="input_service_plan_name"></a> [service\_plan\_name](#input\_service\_plan\_name) | Name of the service plan. If null, a name will be generated | `string` | `null` | no |
 | <a name="input_service_plan_sku_name"></a> [service\_plan\_sku\_name](#input\_service\_plan\_sku\_name) | SKU name for the service plan | `string` | `"Y1"` | no |
 | <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | Name of the storage account. If null, a name will be generated | `string` | `null` | no |
+| <a name="input_subscription_ids"></a> [subscription\_ids](#input\_subscription\_ids) | List of subscription IDs where the function apps will operate | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resources | `map(string)` | `{}` | no |
 
 ## Outputs

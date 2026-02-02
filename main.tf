@@ -16,11 +16,13 @@ resource "azurerm_service_plan" "this" {
 module "scheduler" {
   for_each = var.schedulers
   source   = "diodonfrost/function-app-scheduler-stop-start/azure"
-  version  = "v3.0.0"
+  version  = "v3.1.0"
 
   resource_group_name           = var.resource_group_name
   location                      = var.location
+  create_role_assignment        = false
   function_app_name             = each.value.function_app_name
+  subscription_ids              = var.subscription_ids
   custom_app_settings           = each.value.custom_app_settings
   scheduler_action              = each.value.scheduler_action
   scheduler_ncrontab_expression = each.value.scheduler_ncrontab_expression

@@ -26,6 +26,12 @@ variable "storage_account_name" {
   default     = null
 }
 
+variable "subscription_ids" {
+  description = "List of subscription IDs where the function apps will operate"
+  type        = list(string)
+  default     = []
+}
+
 variable "schedulers" {
   description = "Map of scheduler configurations"
   type = map(object({
