@@ -16,7 +16,7 @@ resource "azurerm_service_plan" "this" {
 module "scheduler" {
   for_each = var.schedulers
   source   = "diodonfrost/function-app-scheduler-stop-start/azure"
-  version  = "v3.2.0"
+  version  = "v3.3.0"
 
   resource_group_name           = var.resource_group_name
   location                      = var.location
@@ -33,6 +33,7 @@ module "scheduler" {
   aks_schedule                  = each.value.aks_schedule
   container_group_schedule      = each.value.container_group_schedule
   scale_set_schedule            = each.value.scale_set_schedule
+  alert_rule_schedule           = each.value.alert_rule_schedule
   dry_run                       = each.value.dry_run
 
   existing_service_plan = {

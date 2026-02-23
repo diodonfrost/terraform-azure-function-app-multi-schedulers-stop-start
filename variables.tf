@@ -46,6 +46,7 @@ variable "schedulers" {
     aks_schedule                  = optional(bool, false)
     container_group_schedule      = optional(bool, false)
     scale_set_schedule            = optional(bool, false)
+    alert_rule_schedule           = optional(bool, false)
     dry_run                       = optional(bool, false)
   }))
 }
